@@ -87,7 +87,7 @@ const config = {
 	target: 'web',
 	output: {
 		path: resolve(__dirname, './build'),
-		publicPath: '/',
+		publicPath: process.env.PUBLIC_URL || '/',
 	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx'],

@@ -1,4 +1,4 @@
-const ROUTES = {
+const _ROUTES = {
 	SIGN_UP: '/signup',
 	LOGIN: '/login',
 	HOME: '/home',
@@ -76,5 +76,13 @@ const ROUTES = {
 	WORKSPACE_ACCESS_RESTRICTED: '/workspace-access-restricted',
 	HOME_PAGE: '/',
 } as const;
+
+const ROUTES = Object.fromEntries(
+	Object.entries(_ROUTES).map(([key, value]) => {
+		const base = process.env.PUBLIC_URL?.replace(/\/$/, '') ?? '';
+		const path = value.replace(/^\//, '');
+    		return [key, base ? `${base}/${path}` : value];
+	})
+);
 
 export default ROUTES;
